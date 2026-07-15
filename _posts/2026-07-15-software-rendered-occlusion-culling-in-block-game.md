@@ -22,6 +22,22 @@ tags:
 
 - <https://enikofox.com/posts/software-rendered-occlusion-culling-in-block-game/>
 
+## 이미지 확인 결과
+
+원문에서 실제 이미지는 확인됐다. 다만 현재 확인 범위에서는 재사용 허용 문구나 별도 라이선스를 찾지 못했다.  
+그래서 이 글에는 원문 이미지 파일 링크를 남기고, 본문 삽입 이미지는 내가 새로 만든 요약 다이어그램으로 대체했다.
+
+확인한 원문 이미지 링크:
+
+- <https://enikofox.com/media/posts/21/occlusion-header-2.png>
+- <https://enikofox.com/media/posts/22/occlusion-levels.png>
+
+새로 만든 요약 다이어그램:
+
+![오클루전 컬링 파이프라인 요약](/assets/images/posts/2026-07-15-occlusion/occlusion-pipeline.svg)
+
+![거리 기반 오클루더 계층 요약](/assets/images/posts/2026-07-15-occlusion/occluder-hierarchy.svg)
+
 ## 왜 CPU로 오클루전 컬링을 했나
 
 글 작성자는 강한 GPU 환경이 아니고, 목표 하드웨어도 낮은 사양을 상정하고 있었다.  

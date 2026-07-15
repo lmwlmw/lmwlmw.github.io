@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Occluder Hierarchy</title>
+  <desc id="desc">A diagram showing chunk to subchunk hierarchy from level 0 to level 4 and how distant geometry uses larger occluders.</desc>
+  <rect width="1200" height="760" fill="#f6f4ef"/>
+  <text x="60" y="70" font-size="36" fill="#2c2c2c" font-family="Arial, sans-serif">Distance-based occluder hierarchy</text>
+  <text x="60" y="108" font-size="22" fill="#5d5d5d" font-family="Arial, sans-serif">Near camera uses finer blockers, far distance uses larger blockers for lower CPU cost.</text>
+
+  <rect x="70" y="170" width="190" height="190" fill="#d9895b" stroke="#8a4d2d" stroke-width="4"/>
+  <text x="165" y="392" font-size="28" text-anchor="middle" fill="#4a2412" font-family="Arial, sans-serif">Level 0</text>
+  <text x="165" y="424" font-size="22" text-anchor="middle" fill="#4a2412" font-family="Arial, sans-serif">whole chunk</text>
+
+  <g transform="translate(320,170)">
+    <rect width="190" height="190" fill="#f0d58c" stroke="#8a7943" stroke-width="4"/>
+    <line x1="95" y1="0" x2="95" y2="190" stroke="#8a7943" stroke-width="4"/>
+    <line x1="0" y1="95" x2="190" y2="95" stroke="#8a7943" stroke-width="4"/>
+  </g>
+  <text x="415" y="392" font-size="28" text-anchor="middle" fill="#5b4b16" font-family="Arial, sans-serif">Level 1</text>
+  <text x="415" y="424" font-size="22" text-anchor="middle" fill="#5b4b16" font-family="Arial, sans-serif">8x8x8 cells</text>
+
+  <g transform="translate(570,170)">
+    <rect width="190" height="190" fill="#7dc48b" stroke="#3e6d49" stroke-width="4"/>
+    <line x1="47.5" y1="0" x2="47.5" y2="190" stroke="#3e6d49" stroke-width="3"/>
+    <line x1="95" y1="0" x2="95" y2="190" stroke="#3e6d49" stroke-width="3"/>
+    <line x1="142.5" y1="0" x2="142.5" y2="190" stroke="#3e6d49" stroke-width="3"/>
+    <line x1="0" y1="47.5" x2="190" y2="47.5" stroke="#3e6d49" stroke-width="3"/>
+    <line x1="0" y1="95" x2="190" y2="95" stroke="#3e6d49" stroke-width="3"/>
+    <line x1="0" y1="142.5" x2="190" y2="142.5" stroke="#3e6d49" stroke-width="3"/>
+  </g>
+  <text x="665" y="392" font-size="28" text-anchor="middle" fill="#23472a" font-family="Arial, sans-serif">Level 2</text>
+  <text x="665" y="424" font-size="22" text-anchor="middle" fill="#23472a" font-family="Arial, sans-serif">4x4x4 cells</text>
+
+  <g transform="translate(820,170)">
+    <rect width="190" height="190" fill="#85a9df" stroke="#35507f" stroke-width="4"/>
+    <line x1="23.75" y1="0" x2="23.75" y2="190" stroke="#35507f" stroke-width="2"/>
+    <line x1="47.5" y1="0" x2="47.5" y2="190" stroke="#35507f" stroke-width="2"/>
+    <line x1="71.25" y1="0" x2="71.25" y2="190" stroke="#35507f" stroke-width="2"/>
+    <line x1="95" y1="0" x2="95" y2="190" stroke="#35507f" stroke-width="2"/>
+    <line x1="118.75" y1="0" x2="118.75" y2="190" stroke="#35507f" stroke-width="2"/>
+    <line x1="142.5" y1="0" x2="142.5" y2="190" stroke="#35507f" stroke-width="2"/>
+    <line x1="166.25" y1="0" x2="166.25" y2="190" stroke="#35507f" stroke-width="2"/>
+    <line x1="0" y1="23.75" x2="190" y2="23.75" stroke="#35507f" stroke-width="2"/>
+    <line x1="0" y1="47.5" x2="190" y2="47.5" stroke="#35507f" stroke-width="2"/>
+    <line x1="0" y1="71.25" x2="190" y2="71.25" stroke="#35507f" stroke-width="2"/>
+    <line x1="0" y1="95" x2="190" y2="95" stroke="#35507f" stroke-width="2"/>
+    <line x1="0" y1="118.75" x2="190" y2="118.75" stroke="#35507f" stroke-width="2"/>
+    <line x1="0" y1="142.5" x2="190" y2="142.5" stroke="#35507f" stroke-width="2"/>
+    <line x1="0" y1="166.25" x2="190" y2="166.25" stroke="#35507f" stroke-width="2"/>
+  </g>
+  <text x="915" y="392" font-size="28" text-anchor="middle" fill="#22395e" font-family="Arial, sans-serif">Level 3</text>
+  <text x="915" y="424" font-size="22" text-anchor="middle" fill="#22395e" font-family="Arial, sans-serif">2x2x2 cells</text>
+
+  <rect x="70" y="510" width="1040" height="170" rx="24" fill="#fffaf0" stroke="#d7c7a2" stroke-width="3"/>
+  <text x="100" y="562" font-size="30" fill="#4c401d" font-family="Arial, sans-serif">Interpretation</text>
+  <text x="100" y="606" font-size="24" fill="#5f5230" font-family="Arial, sans-serif">Near distance: many small blockers improve accuracy.</text>
+  <text x="100" y="640" font-size="24" fill="#5f5230" font-family="Arial, sans-serif">Far distance: fewer, larger blockers reduce raster and test cost.</text>
+  <text x="100" y="674" font-size="24" fill="#5f5230" font-family="Arial, sans-serif">Candidate chunks stay coarse even when occluders become detailed.</text>
+
+  <path d="M260 265 H320" stroke="#5c5c5c" stroke-width="6" fill="none"/>
+  <path d="M510 265 H570" stroke="#5c5c5c" stroke-width="6" fill="none"/>
+  <path d="M760 265 H820" stroke="#5c5c5c" stroke-width="6" fill="none"/>
+  <polygon points="315,256 315,274 335,265" fill="#5c5c5c"/>
+  <polygon points="565,256 565,274 585,265" fill="#5c5c5c"/>
+  <polygon points="815,256 815,274 835,265" fill="#5c5c5c"/>
+</svg>

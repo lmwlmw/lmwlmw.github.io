@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Software Occlusion Culling Pipeline</title>
+  <desc id="desc">A simplified pipeline diagram showing frustum culling, occluder building, software depth rendering, candidate testing, and visible chunk output.</desc>
+  <rect width="1200" height="620" fill="#f5f1e8"/>
+  <rect x="40" y="60" width="180" height="90" rx="18" fill="#255f85"/>
+  <text x="130" y="102" font-size="28" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif">World Chunks</text>
+  <text x="130" y="134" font-size="18" text-anchor="middle" fill="#d8edf8" font-family="Arial, sans-serif">16x16x16 data</text>
+  <rect x="270" y="60" width="200" height="90" rx="18" fill="#3a7d44"/>
+  <text x="370" y="102" font-size="28" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif">Frustum Culling</text>
+  <text x="370" y="134" font-size="18" text-anchor="middle" fill="#e7f8eb" font-family="Arial, sans-serif">drop empty or out-of-view chunks</text>
+  <rect x="520" y="60" width="220" height="90" rx="18" fill="#8c5e34"/>
+  <text x="630" y="102" font-size="28" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif">Build Occluders</text>
+  <text x="630" y="134" font-size="18" text-anchor="middle" fill="#f4e7da" font-family="Arial, sans-serif">block or subchunk by distance</text>
+  <rect x="790" y="60" width="230" height="90" rx="18" fill="#7d4e92"/>
+  <text x="905" y="102" font-size="28" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif">Software Depth Pass</text>
+  <text x="905" y="134" font-size="18" text-anchor="middle" fill="#f0e5f6" font-family="Arial, sans-serif">write low-res depth on CPU</text>
+  <rect x="310" y="250" width="230" height="110" rx="18" fill="#d9c06b"/>
+  <text x="425" y="292" font-size="28" text-anchor="middle" fill="#3a2b00" font-family="Arial, sans-serif">Chunk Candidates</text>
+  <text x="425" y="322" font-size="18" text-anchor="middle" fill="#4a3900" font-family="Arial, sans-serif">near plane conservative check</text>
+  <text x="425" y="346" font-size="18" text-anchor="middle" fill="#4a3900" font-family="Arial, sans-serif">test nearest depth</text>
+  <rect x="640" y="250" width="250" height="110" rx="18" fill="#d96c5f"/>
+  <text x="765" y="292" font-size="28" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif">Occlusion Test</text>
+  <text x="765" y="322" font-size="18" text-anchor="middle" fill="#ffe7e3" font-family="Arial, sans-serif">any pixel in front = visible</text>
+  <text x="765" y="346" font-size="18" text-anchor="middle" fill="#ffe7e3" font-family="Arial, sans-serif">all behind = culled</text>
+  <rect x="930" y="250" width="200" height="110" rx="18" fill="#2c8f7b"/>
+  <text x="1030" y="292" font-size="28" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif">Render List</text>
+  <text x="1030" y="322" font-size="18" text-anchor="middle" fill="#e3fbf6" font-family="Arial, sans-serif">visible chunks only</text>
+  <text x="1030" y="346" font-size="18" text-anchor="middle" fill="#e3fbf6" font-family="Arial, sans-serif">send to GPU</text>
+  <rect x="70" y="430" width="1060" height="120" rx="22" fill="#fff8ea" stroke="#d8c9a2" stroke-width="3"/>
+  <text x="100" y="474" font-size="28" fill="#553d10" font-family="Arial, sans-serif">Key idea</text>
+  <text x="100" y="515" font-size="24" fill="#5e4b21" font-family="Arial, sans-serif">Use coarse CPU depth for cheap visibility rejection, then keep only chunks that can still contribute to the final frame.</text>
+  <path d="M220 105 H270" stroke="#4c4c4c" stroke-width="6" fill="none"/>
+  <path d="M470 105 H520" stroke="#4c4c4c" stroke-width="6" fill="none"/>
+  <path d="M740 105 H790" stroke="#4c4c4c" stroke-width="6" fill="none"/>
+  <path d="M425 150 V250" stroke="#4c4c4c" stroke-width="6" fill="none"/>
+  <path d="M905 150 V220 H765 V250" stroke="#4c4c4c" stroke-width="6" fill="none"/>
+  <path d="M540 305 H640" stroke="#4c4c4c" stroke-width="6" fill="none"/>
+  <path d="M890 305 H930" stroke="#4c4c4c" stroke-width="6" fill="none"/>
+  <polygon points="265,96 265,114 285,105" fill="#4c4c4c"/>
+  <polygon points="515,96 515,114 535,105" fill="#4c4c4c"/>
+  <polygon points="785,96 785,114 805,105" fill="#4c4c4c"/>
+  <polygon points="416,245 434,245 425,225" fill="#4c4c4c"/>
+  <polygon points="756,245 774,245 765,225" fill="#4c4c4c"/>
+  <polygon points="635,296 635,314 655,305" fill="#4c4c4c"/>
+  <polygon points="925,296 925,314 945,305" fill="#4c4c4c"/>
+</svg>
