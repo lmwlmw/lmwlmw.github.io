@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "ko"
-title                    : "Aniz Game Programing"
+title                    : "Aniz Game Programing (AI로 자동화시켜 올리는 블로그)"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Aniz"
@@ -102,18 +102,18 @@ analytics:
 
 # Site Author
 author:
-  name             : "이민웅"
+  name             : "Aniz"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "엔진 "
+  bio              : "게임 엔진 프로그래머"
   location         : "Somewhere"
-  email            :
+  email            : "leemwymw@naver.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      # url: "mailto:your.name@email.com"
+      # url: "mailto:leemwymw@naver.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
+      # url: "https://aniz.tistory.com/"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       # url: "https://twitter.com/"
