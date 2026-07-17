@@ -1,5 +1,5 @@
 ---
-title: "Maya 워크플로우의 Smooth Normal Outline 툴 정리"
+title: "Maya 워크플로우의 Smooth Normal Outline 툴 번역"
 excerpt_separator: "<!--more-->"
 categories:
   - graphics
@@ -13,7 +13,9 @@ tags:
   - HLSL
 ---
 
-`Maya工作流的平滑法线描边小工具` 글을, 원문 흐름을 최대한 유지하면서 자연스럽게 옮겨 정리한다.
+이 글은 원문 저작권자의 요청이나 삭제 요청이 있을 경우 언제든지 삭제될 수 있습니다.
+
+`Maya工作流的平滑法线描边小工具` 글을, 원문 흐름을 최대한 유지하면서 자연스럽게 번역한다.
 
 작성자는 오랜만에 Zhihu에 글을 올린다고 말하며, 바로 문제를 꺼낸다. 현재 가장 흔한 toon rendering outline 방식은 back-face normal extrusion인데, 전반적으로는 좋지만 hard surface에서 outline이 끊어진다는 점이 단점이라는 것이다. 이유는 간단하다. vertex normal 방향이 면마다 다르기 때문이다.
 
@@ -25,7 +27,7 @@ tags:
 
 <!--more-->
 
-## 번역 정리
+## 번역
 
 ### 왜 average normal 기반 outline이 필요한가
 
@@ -74,7 +76,7 @@ tags:
 
 ### 최종 구현은 OpenMaya 기반 계산으로 정리됐다
 
-작성자는 최종적으로는 average normal 계산과 tangent space 변환을 전부 `OpenMaya`로 처리했다고 말한다. 그리고 이렇게 정리한다.
+작성자는 최종적으로는 average normal 계산과 tangent space 변환을 전부 `OpenMaya`로 처리했다고 말한다. 그리고 다음처럼 설명한다.
 
 - 모델 공간 좌표계 문제는 tangent space로 옮기면 크게 신경 쓰지 않아도 된다.
 - 당시 코드는 `ColorSet` 이름과 `uv map` 이름을 하드코딩해 둔 상태였다.
@@ -104,12 +106,6 @@ tags:
 ![원문 이미지](https://pica.zhimg.com/v2-967bc0da2cc36bfc2a36fcc1c51ec85a_b.jpg)
 
 원문 이미지 링크: <https://pica.zhimg.com/v2-967bc0da2cc36bfc2a36fcc1c51ec85a_b.jpg>
-
-## 보충 해설
-
-이 글에서 흥미로운 지점은 알고리즘 자체보다도 workflow 설계다. average normal 기반 outline라는 아이디어 자체는 업계에서 널리 쓰이지만, 작성자는 그것을 Maya 현업 파이프라인 안에서 어떻게 제어 가능하게 만들 것인가에 더 집중한다.
-
-즉, 핵심은 `원본 shading normal은 건드리지 않고`, outline용 데이터를 별도 vertex color로 굽고, 필요한 submesh에만 선택적으로 적용하는 것이다. runtime shader보다 DCC 단계의 제어성과 속도 개선이 더 중요한 문제였다는 점이 글 전체에 잘 드러난다.
 
 ## 참조
 
