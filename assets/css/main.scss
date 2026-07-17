@@ -6,3 +6,26 @@
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+
+/* Widen post/page content on desktop while keeping the right sidebar. */
+@media (min-width: 1024px) {
+  .page {
+    width: calc(100% - 180px);
+    padding-right: 180px;
+  }
+}
+
+@media (min-width: 1280px) {
+  #main {
+    max-width: 1600px;
+  }
+
+  .page {
+    width: calc(100% - 240px);
+    padding-right: 240px;
+  }
+
+  .page .page__inner-wrap {
+    max-width: 1240px;
+  }
+}
