@@ -185,11 +185,8 @@ screen space에서 culling하려고 하면 투영 후 비선형성 때문에 보
 ## 참조
 
 - 원문: <https://enikofox.com/posts/software-rendered-occlusion-culling-in-block-game/>
-  block game용 software occlusion culling 구현 과정을 단계별 성능 개선과 함께 설명한 글이다.
 - 원문 이미지: <https://enikofox.com/media/posts/21/occlusion-header-2.png>
-  글 대표 이미지다.
 - 원문 이미지: <https://enikofox.com/media/posts/22/occlusion-levels.png>
-  level별 occluder 구성을 보여주는 이미지다.
 
 ![오클루전 컬링 파이프라인 요약](/assets/images/posts/2026-07-15-occlusion/occlusion-pipeline.svg)
 

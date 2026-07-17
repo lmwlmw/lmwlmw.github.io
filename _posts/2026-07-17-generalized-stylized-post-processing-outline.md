@@ -127,9 +127,7 @@ post-processing outline은 보통:
 ## 참조
 
 - 원문: <https://zhuanlan.zhihu.com/p/1895785690161198348>
-  현재 공개 웹 환경에서는 본문 접근이 막혀 있었다.
 - GDC 세션 설명: <https://schedule.gdconf.com/session/generalized-stylized-post-processing-outline-scheme/911861>
-  세션의 핵심 주제와 방향을 짧게 확인할 수 있는 공개 설명 페이지다.
 
 ## 용어 정리
 
