@@ -155,6 +155,9 @@ include:
   - .htaccess
   - _pages
 exclude:
+  - .blog-meta
+  - .private-posts
+  - pending-posts
   - "*.sublime-project"
   - "*.sublime-workspace"
   - vendor
