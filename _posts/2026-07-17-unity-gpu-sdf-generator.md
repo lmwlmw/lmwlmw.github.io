@@ -16,13 +16,13 @@ tags:
 
 `【技术美术】unity 工具记录 - 写个GPU上运行的SDF生成器` 글을, 원문 흐름을 최대한 유지하면서 자연스럽게 번역합니다.
 
-## 使用方式
+## 사용 방식
 
 ![원문 이미지](https://pic1.zhimg.com/v2-b2ad7e472c0d2e55e17f9d26168e3f35.jpg?source=25ab7b06)
 
 원문 이미지 링크: <https://pic1.zhimg.com/v2-b2ad7e472c0d2e55e17f9d26168e3f35.jpg?source=25ab7b06>
 
-## 前言
+## 전언
 
 최근 `Compute shader`로 Unity `SDF` 생성기를 하나 만들었다. 여기서는 `SDF`의 생성 알고리즘을 다시 돌아보고, 핵심 코드를 기록해 둔다. 프로젝트는 GitHub에 올려 두었다.
 
@@ -30,7 +30,7 @@ tags:
 
 <!--more-->
 
-## 需求
+## 요구 사항
 
 카툰 렌더링의 얼굴 normal, 그리고 연소, dissolve, growth 같은 효과에서는, Houdini에서 정교하게 다듬은 결과를 게임 엔진으로 가져와 표현하고 싶을 때가 있다. 이때는 `SDF` texture를 써서 표면 변화 과정을 기록해야 할 수 있다.
 
@@ -50,9 +50,9 @@ tags:
 
 원문 이미지 링크: <https://pic3.zhimg.com/v2-f8e5e91f95ab31987d74aa563aeb7e3c_1440w.jpg>
 
-## 原理
+## 원리
 
-### SDF 是什么
+### SDF란 무엇인가
 
 `SDF`는 signed distance field다. 2D 이미지 `SDF`에서는 각 pixel이 가장 가까운 반대 색 pixel까지의 거리를 기록한다. 예를 들어 아래 그림에서는, 검은색 부분의 `SDF`가 가장 가까운 흰 pixel까지의 거리를 기록하므로 양수가 되고, 흰색 부분은 가장 가까운 검은 pixel까지의 거리를 기록하므로 음수가 된다.
 
@@ -60,7 +60,7 @@ tags:
 
 원문 이미지 링크: <https://pica.zhimg.com/v2-e1f4ddb2c9431e9203b2ce821f094afe_1440w.jpg>
 
-### 如何从遮罩图生成 SDF
+### 마스크 이미지에서 SDF를 만드는 방법
 
 어떤 글에서 `SDF` 생성 방법을 세 가지로 설명한 적이 있다. brute force, `Saito`, `8ssedt`다.
 
@@ -94,13 +94,13 @@ tags:
 
 원문 이미지 링크: <https://pic1.zhimg.com/v2-03ed9b465daf4e1e46ecceb35fabf4ae_1440w.jpg>
 
-- 方案选择
+- 방법 선택
 
 두 방법을 비교해 보면, `8ssedt`는 `O(N)` 시간 안에 끝낼 수 있지만, 각 pass가 반드시 순서대로 실행되어야 한다. 즉, 다음 계산은 반드시 이전 계산 결과를 기반으로 해야 하며, 그래야 값이 0인 pixel이 바깥으로 퍼져 나갈 수 있다.
 
 반면 `Saito`는 병렬 계산이 가능하므로 GPU에서 돌리기에 더 적합하다. 그래서 여기서는 이 방법을 선택했다.
 
-### SDF 图到渐变图
+### SDF 이미지에서 그라디언트 이미지로
 
 먼저 여러 장의 `SDF`가 있고, 각 `SDF`는 하나의 frame 번호에 대응한다고 하자. 예를 들어 첫 번째 frame의 `sdf1`과 다섯 번째 frame의 `sdf5`를 기록해 두었다면, 두 번째 frame의 `sdf2`는 선형 보간으로 만들 수 있다.
 
@@ -115,9 +115,9 @@ sdf2 = sdf1 * weight2 + sdf5 * (1 + weight2);
 
 원문 이미지 링크: <https://pic1.zhimg.com/v2-b926741f2fb8733f57480d71e4e02f22_1440w.jpg>
 
-## 工具开发
+## 도구 개발
 
-### 生成 SDF
+### SDF 생성
 
 이 부분은 `Compute shader`로 알고리즘을 구현한 코드를 기록하려는 것이다.
 
@@ -215,7 +215,7 @@ void calculateSDF2(uint3 id : SV_DispatchThreadID)
 }
 ```
 
-### 合成 SDF 为渐变图
+### SDF를 합성해 그라디언트 이미지 만들기
 
 나는 각 texture 이름의 마지막 몇 글자를 frame 번호로 썼다. 예를 들어 `Substance_graph_output_SDF_177`은 177번째 frame의 `SDF` image를 뜻한다.
 
@@ -295,7 +295,7 @@ void combineSDF(uint3 id : SV_DispatchThreadID)
 }
 ```
 
-## 踩坑记录
+## 시행착오 기록
 
 - 처음에는 Houdini 안에서 도구를 쓰려고 했다. 하지만 Houdini `COP`에는 loop node가 없어서, 다음 pixel의 조회 대상을 이전 pixel의 출력 결과로 삼는 구조를 만들 수 없었다. 그래서 `8sset`은 작성할 수 없었다. 게다가 Houdini의 `VEX`는 CPU에서 실행되므로 `Saito`도 매우 느렸다. 결국 엔진 안에서 `Compute shader`로 도구를 작성할 수밖에 없었다. `Houdini`에서 `openCL`을 쓸 수 있는 것 같긴 하지만 자료가 너무 적다.
 
@@ -330,7 +330,7 @@ Graphics.ExecuteCommandBuffer(cmd);
 
 마지막으로, 내가 구현한 Unity 효과와 도구는 계속 칼럼에 기록해 둘 예정이니, 관심 있으면 팔로우해 주시면 된다.
 
-## 参考
+## 참고
 
 - 亚像素距离变换 — Acko.net --- Sub-pixel Distance Transform — Acko.net
 - 欧几里得距离转换（EDT）算法_distance transforms of sampled functions-CSDN博客
