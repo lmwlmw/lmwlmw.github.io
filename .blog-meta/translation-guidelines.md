@@ -16,6 +16,9 @@ It must not be rendered on the public blog.
 8. Do not include `원문 이미지` links inside `참조`.
 9. Add `전문 요약` at the end of the post.
 10. Add `용어 정리` at the end of the post.
+11. If the source article is too long, split it into small sections and continue translating section by section until the whole source is covered.
+12. For long articles, do not replace the full translation with a compressed summary. Use repeated translation passes until the full text is represented on the blog.
+13. When updating a long article over multiple passes, preserve the existing translated sections and append or expand the remaining untranslated sections.
 
 ## Publication Lanes
 
