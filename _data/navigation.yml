@@ -4,3 +4,7 @@ main:
     url: /
   - title: "Catalog"
     url: /catalog/
+  - title: "Guestbook"
+    url: /guestbook/
+  - title: "Stats"
+    url: /stats/

@@ -1,3 +1,12 @@
 <!-- start custom footer snippets -->
+{% if site.goatcounter.code and site.goatcounter.show_total_in_footer %}
+<div class="site-visit-counter">
+  <span class="site-visit-counter__label">총 방문</span>
+  <span id="goatcounter-total-count" data-goatcounter-total class="site-visit-counter__value"></span>
+  {% if site.goatcounter.public_dashboard_url %}
+    <a class="site-visit-counter__link" href="{{ '/stats/' | relative_url }}">통계 보기</a>
+  {% endif %}
+</div>
+{% endif %}
 
 <!-- end custom footer snippets -->

@@ -29,3 +29,47 @@
     max-width: 1240px;
   }
 }
+
+.site-visit-counter {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #5f4b32;
+}
+
+.site-visit-counter__label {
+  font-weight: 700;
+  margin-right: 0.35rem;
+}
+
+.site-visit-counter__value {
+  margin-right: 0.6rem;
+}
+
+.site-visit-counter__link {
+  font-weight: 700;
+}
+
+.page__meta-views-count .goatcounter-stat {
+  display: inline;
+}
+
+.site-visit-counter__value .goatcounter-stat {
+  display: inline;
+}
+
+.stats-embed {
+  width: 100%;
+  min-height: 70vh;
+  margin-top: 1rem;
+  border: 1px solid #d6cab8;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #faf5eb;
+}
+
+.stats-embed iframe {
+  display: block;
+  width: 100%;
+  min-height: 70vh;
+  border: 0;
+}

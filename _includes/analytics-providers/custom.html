@@ -1,3 +1,48 @@
 <!-- start custom analytics snippet -->
+{% if site.goatcounter.code %}
+<script
+  data-goatcounter="https://{{ site.goatcounter.code }}.goatcounter.com/count"
+  async
+  src="//gc.zgo.at/count.js"></script>
+<script>
+  (function () {
+    function renderCounters() {
+      if (!window.goatcounter || !window.goatcounter.visit_count) {
+        return false;
+      }
+
+      document.querySelectorAll('[data-goatcounter-total]').forEach(function (el) {
+        if (el.dataset.goatcounterRendered === '1') return;
+        el.dataset.goatcounterRendered = '1';
+        window.goatcounter.visit_count({
+          append: '#' + el.id,
+          path: 'TOTAL',
+          no_branding: true
+        });
+      });
+
+      document.querySelectorAll('[data-goatcounter-path]').forEach(function (el) {
+        if (el.dataset.goatcounterRendered === '1') return;
+        el.dataset.goatcounterRendered = '1';
+        window.goatcounter.visit_count({
+          append: '#' + el.id,
+          path: el.getAttribute('data-goatcounter-path'),
+          no_branding: true
+        });
+      });
+
+      return true;
+    }
+
+    var tries = 0;
+    var timer = setInterval(function () {
+      tries += 1;
+      if (renderCounters() || tries > 50) {
+        clearInterval(timer);
+      }
+    }, 200);
+  })();
+</script>
+{% endif %}
 
 <!-- end custom analytics snippet -->

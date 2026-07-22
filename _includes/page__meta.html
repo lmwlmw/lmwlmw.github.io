@@ -1,5 +1,6 @@
 {% assign document = post | default: page %}
-{% if document.read_time or document.show_date %}
+{% assign show_goatcounter_views = site.goatcounter.code and site.goatcounter.show_pageviews_in_posts and include.type == nil and document.url != "/" %}
+{% if document.read_time or document.show_date or show_goatcounter_views %}
   <p class="page__meta">
     {% if document.show_date and document.date %}
       {% assign date = document.date %}
@@ -25,6 +26,17 @@
         {% else %}
           {{ words | divided_by: words_per_minute }} {{ site.data.ui-text[site.locale].minute_read | default: "minute read" }}
         {% endif %}
+      </span>
+    {% endif %}
+
+    {% if show_goatcounter_views %}
+      {% if document.read_time or document.show_date %}<span class="page__meta-sep"></span>{% endif %}
+      <span class="page__meta-views">
+        <i class="far fa-eye" aria-hidden="true"></i>
+        <span
+          id="goatcounter-pageview"
+          data-goatcounter-path="{{ document.url }}"
+          class="page__meta-views-count"></span>
       </span>
     {% endif %}
   </p>
