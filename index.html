@@ -2,3 +2,45 @@
 layout: home
 author_profile: true
 ---
+
+{% if site.goatcounter.code %}
+<section class="home-stats-panel">
+  <div class="home-stats-panel__intro">
+    <h2>블로그 현황</h2>
+    <p>댓글은 giscus, 방문 통계는 GoatCounter 기준으로 연결됩니다.</p>
+  </div>
+  <div class="home-stats-panel__cards">
+    <div class="home-stat-card">
+      <span class="home-stat-card__label">총 방문 수</span>
+      <span id="goatcounter-home-total" data-goatcounter-total class="home-stat-card__value"></span>
+    </div>
+    <div class="home-stat-card">
+      <span class="home-stat-card__label">바로가기</span>
+      <span class="home-stat-card__links">
+        <a href="{{ '/guestbook/' | relative_url }}">방명록</a>
+        <a href="{{ '/stats/' | relative_url }}">통계 보기</a>
+      </span>
+    </div>
+  </div>
+</section>
+{% else %}
+<section class="home-stats-panel home-stats-panel--pending">
+  <div class="home-stats-panel__intro">
+    <h2>블로그 현황</h2>
+    <p>통계 코드를 넣으면 메인페이지에 총 방문 수가 바로 표시됩니다.</p>
+  </div>
+  <div class="home-stats-panel__cards">
+    <div class="home-stat-card">
+      <span class="home-stat-card__label">댓글 시스템</span>
+      <span class="home-stat-card__value">giscus 준비 완료</span>
+    </div>
+    <div class="home-stat-card">
+      <span class="home-stat-card__label">바로가기</span>
+      <span class="home-stat-card__links">
+        <a href="{{ '/guestbook/' | relative_url }}">방명록</a>
+        <a href="{{ '/stats/' | relative_url }}">통계 페이지</a>
+      </span>
+    </div>
+  </div>
+</section>
+{% endif %}
