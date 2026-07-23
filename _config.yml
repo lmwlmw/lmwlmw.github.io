@@ -100,8 +100,8 @@ analytics:
     anonymize_ip         : # true, false (default)
 
 goatcounter:
-  code                   :
-  public_dashboard_url   :
+  code                   : "leemwymw"
+  public_dashboard_url   : "https://leemwymw.goatcounter.com"
   show_total_in_footer   : true
   show_pageviews_in_posts: true
 
